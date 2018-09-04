@@ -1,9 +1,6 @@
 class CommentsController < ApplicationController
-	get '/comments' do
-		erb :'home/index'
-	end
-
 	post '/posts/:post_id/comments' do
+		check_authentication
 		unless params[:new_comment].blank?
 			find_post(params[:post_id])
 			if @post.comments.create(content: params[:new_comment], user_id: current_user.id)

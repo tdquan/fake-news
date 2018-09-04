@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
 	require 'open-uri'
-	helpers PostHelpers
 
 	Article = Struct.new(:id, :title, :content, :upvote, :downvote, :comments, :photo_url, :published_date, :user_id, :outside_source, :source_url)
 
@@ -15,6 +14,7 @@ class PostsController < ApplicationController
 	end
 
 	post '/posts' do
+		check_authentication
 		if current_user.posts.create(title: params[:title], content: params[:content], photo: params[:photo])
 			flash[:success] = "Article created."
 			redirect '/'
