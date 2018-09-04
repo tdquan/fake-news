@@ -3,7 +3,6 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/reloader'
 require 'better_errors'
-require 'asset_handler'
 require 'sinatra'
 require 'sinatra/flash'
 require 'warden'
@@ -16,7 +15,6 @@ require_relative '../models/comment'
 set :database, "sqlite3:development.sqlite3"
 
 class ApplicationController < Sinatra::Base
-	# helpers ApplicationHelpers
 	use Rack::Session::Cookie
 	register Sinatra::Flash
 	include TimeAgo
@@ -28,8 +26,6 @@ class ApplicationController < Sinatra::Base
 	end
 
 	set :views, File.expand_path('../../views', __FILE__)
-
-	use AssetHandler
 
 	use Warden::Manager do |manager|
 		manager.default_strategies :password
