@@ -1,0 +1,25 @@
+<section>
+	<br>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3">
+			<% @posts.each do |post| %>
+				<%= erb :'posts/post', locals: { post: post } %>
+			<% end %>
+		</div>
+
+		<div class="col-md-3 sidebar-right">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					Create a newpost
+				</div>
+				<div class="panel-body">
+					<p>Create your epic post here!</p>
+					<br>
+					<div class="text-center">
+						<a href="/posts/new" class="btn btn-primary">New post</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

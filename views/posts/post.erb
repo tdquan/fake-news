@@ -1,0 +1,61 @@
+<% panel_type = post.outside_source ? "panel-default" : "panel-primary" %>
+<div class="panel <%= panel_type %>">
+  <div class="panel-heading">
+    <h3 class="panel-title"><%= post.title %></h3>
+    <p><%= TimeAgo.time_ago(post.published_date) %></p>
+  </div>
+  <% if post.content %>
+	  <div class="panel-body">
+	  	<% if post.photo_url %>
+		  	<div class="text-center">
+					<img src="<%= post.photo_url %>" alt="" class="article-photo">
+		  	</div>
+		  	<hr>
+		  <% end %>
+	    <p><%= post.content %></p>
+
+	    <!-- Comments and vote section -->
+	    <hr>
+	    <% unless post.outside_source %>
+			  <div>
+			  	<a data-toggle="collapse" href="#post-<%= post.id %>" role="button" aria-expanded="false" aria-controls="multiCollapseExample1"><i class="fa fa-comments"></i> <%= post.comments.count %> comments</a>
+			  	&nbsp;|&nbsp;
+			  	<form name="upvote_<%= post.id %>" action="/posts/<%= post.id %>/upvote" method="post" class="inline">
+			  		<a onclick="this.parentNode.submit()"><i class="fa fa-thumbs-up"></i> <%= post.upvote %></a>
+			  	</form>
+			  	&nbsp;|&nbsp;
+			  	<form name="downvote_<%= post.id %>" action="/posts/<%= post.id %>/downvote" method="post" class="inline">
+			  		<a onclick="this.parentNode.submit()"><i class="fa fa-thumbs-down"></i> <%= post.downvote %></a>
+			  	</form>
+			  </div>
+			  <br>
+			  <div class="collapse" id="post-<%= post.id %>">
+			  	<h4 class="text-center">Comments</h4>
+			  	<div class="well">
+				  	<% post.comments.each do |comment| %>
+					  	<div class="media card">
+						    <div class="media-left">
+						      <a href="#">
+						        <img class="media-object" src="https://via.placeholder.com/50x50" alt="avatar">
+						      </a>
+						    </div>
+						    <div class="media-body">
+						      <h5 class="media-heading"><%= comment.user.nickname rescue "Guest" %></h5>
+						      <p><%= comment.content %></p>
+						    </div>
+						  </div>
+					  <% end %>
+					  <br>
+					  <% if current_user %>
+							<%= erb :'comments/add_comment', locals: { post: post }%>
+						<% else %>
+							<h5 class="text-center"><a href="/login">Log in</a> to post your comment.</h5>
+					  <% end %>
+					</div>
+			  </div>
+			<% else %>
+				<a href="<%= post.source_url %>" target="_blank"><i class="fa fa-external-link"></i> Source</a>
+	    <% end %>
+	  </div>
+	 <% end %>
+</div>

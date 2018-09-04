@@ -1,0 +1,61 @@
+a {
+	cursor: pointer;
+}
+
+.grey-background {
+	background-color: #e6ecf0;
+	min-height: 100vh;
+	min-width: 100%;
+}
+
+.card {
+	background-color: white;
+	padding: 5px;
+	border: solid 1px #ddd;
+	border-radius: 4px;
+}
+
+.inline {
+	display: inline;
+}
+
+.inline-block {
+	display: inline-block;
+}
+
+.block {
+	display: block;
+}
+
+.alert {
+	position: fixed;
+	top: 10px;
+	z-index: 100;
+}
+
+.navbar {
+	border-radius: 0;
+	margin-bottom: 0;
+}
+
+input.form-control {
+	margin-bottom: 10px;
+}
+
+.session-form {
+	padding-top: 20vh;
+}
+
+.dropdown-menu > li {
+	padding: 0 10px;
+}
+
+.dropdown-menu > li > a {
+	padding: 0;
+}
+
+.article-photo {
+	width: 100%;
+	height: auto;
+	min-height: 300px;
+}
