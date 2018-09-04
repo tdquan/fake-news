@@ -8,5 +8,6 @@ Dir.glob('./{models,helpers,controllers}/*.rb').each { |file| require file }
 
 run ApplicationController
 use SessionsController
+use UsersController
 use PostsController
 use CommentsController
