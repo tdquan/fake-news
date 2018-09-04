@@ -3,6 +3,7 @@ require 'sinatra'
 require 'sinatra/activerecord'
 require 'sinatra/reloader'
 require 'better_errors'
+require 'asset_handler'
 require 'sinatra'
 require 'sinatra/flash'
 require 'warden'
@@ -26,6 +27,8 @@ class ApplicationController < Sinatra::Base
 	end
 
 	set :views, File.expand_path('../../views', __FILE__)
+
+	use AssetHandler
 
 	use Warden::Manager do |manager|
 		manager.default_strategies :password
