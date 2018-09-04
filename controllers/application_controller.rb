@@ -60,6 +60,8 @@ class ApplicationController < Sinatra::Base
 
 	not_found { erb :'404' }
 
+	error { erb :'500' }
+
 	def warden_handler
   	env['warden']
 	end
